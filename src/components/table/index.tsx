@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { MatchTableRow } from '../../utils/interfaces/matches';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { addMatch, deleteMatch } from '../../api/matches';
 
-
 interface Props {
     data: MatchTableRow[]
     refreshTableData: () => void
+    loading: boolean
 }
 
 const columns: GridColDef[] = [
@@ -39,7 +39,7 @@ export default function DataTable(props: Props) {
   return (
     <div style={{ width: '875px', margin: 'auto' }}>
       <div style={{ height: '55px'}}>
-      <div style={{ display: "flex", justifyContent: "space-between"}}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center'}}>
         {selectedIds.length > 0 && 
           <Button 
             variant="outlined" 
@@ -47,10 +47,12 @@ export default function DataTable(props: Props) {
             style={{padding:"15px"}}
             onClick={deleteSelectedLines}
           >
-            Delete selected lines
+            Delete selected line{selectedIds.length > 1 ? 's' : ''}
           </Button>
         }
-        {selectedIds.length <= 0 && <div></div>}
+        {selectedIds.length <= 0 && 
+          <div style={{fontStyle: 'italic', fontSize: '14px'}}>* Select a line in ordert to delete it</div>
+        }
         <Button 
           variant="outlined" 
           startIcon={<AddIcon />} 
@@ -68,6 +70,7 @@ export default function DataTable(props: Props) {
           pageSize={12}
           rowsPerPageOptions={[12]}
           onSelectionModelChange={handleChange}
+          loading={props.loading}
           checkboxSelection
         />
       </div>

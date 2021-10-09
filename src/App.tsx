@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <Table data={data} refreshTableData={getData}/>
+      <Table data={data} refreshTableData={getData} loading={isLoading}/>
     </div>
   );
 }

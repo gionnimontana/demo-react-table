@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import moment from 'moment'
-import { MatchesMap, Match, MatchTableRow } from '../../utils/interfaces/matches'
+import { MatchesMap, Match } from '../../utils/interfaces/matches'
 
 let matchesCache: MatchesMap | null = null
 
@@ -24,11 +24,11 @@ export function addMatch() {
     if (!matchesCache) return
     const allIDS = Object.keys(matchesCache).map(el => Number(el))
     allIDS.sort()
-    const newMatchID = allIDS[allIDS.length - 1] + 1
+    const newMatchID = allIDS.length > 0 ? allIDS[allIDS.length - 1] + 1 : 23639961
     const match: Match = {
         teams: {
-            away: { name: 'teamX' },
-            home: { name: 'teamY' }
+            away: { name: 'teamY' },
+            home: { name: 'teamX' }
         },
         time: {
             date: moment().format('DD/MM/YYYY'),
