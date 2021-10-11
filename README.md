@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## how to install
 
-please Make sure you have [Node](https://nodejs.org/) v10+ and [NPM](https://www.npmjs.com/) v6* installed. Then just run the following commands from the main folder:
+please Make sure you have [Node](https://nodejs.org/) v10+ and [NPM](https://www.npmjs.com/) v6+ installed. Then just run the following commands from the main folder:
 
 ```sh
 npm install
